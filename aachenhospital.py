@@ -9,7 +9,6 @@ class CityMap:
         self.hospitals = []      
 
     def add_place(self, name, lat, lon, is_hospital=False):
-        """Add a point on the map (node)."""
         self.coords[name] = (lat, lon)
         if name not in self.roads:
             self.roads[name] = []
@@ -41,7 +40,6 @@ class CityMap:
 def build_aachen():
     m = CityMap()
 
-    # ----- Hospitals (5) -----
     m.add_place("Uniklinik RWTH Aachen", 50.7739, 6.0414, is_hospital=True)
     m.add_place("Luisenhospital Aachen", 50.7784, 6.0966, is_hospital=True)
     m.add_place("St.-Marien-Hospital", 50.7594, 6.1030, is_hospital=True)
@@ -245,7 +243,7 @@ def main():
     print("=" * 70)
 
     for start in scenarios:
-        print(f"\n📍 Starting point: {start}")
+        print(f"\n Starting point: {start}")
 
         dijk = run_algorithm(city, start, "Dijkstra", dijkstra_to_nearest_hospital)
         astar = run_algorithm(city, start, "A*", astar_to_nearest_hospital)
